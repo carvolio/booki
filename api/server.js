@@ -19,14 +19,9 @@ app.listen(porta, () => {
     console.log(`[server] respondendo na porta ${porta}`);
 });
 
-// const teste = (req, res) => {
-//     res.json("API gerenciador de tarefas respondendo!");
-// };
-// router.get("/", teste);
-
 const getHomeBook = async (req, res) => {
     const book = "dune";
-    const result = await search.search(book);
-    // res.json(result);
+    const result = await search.search('q', book, '', '', '', 10);
+    console.log(result);
 }
 router.get("/", getHomeBook);
