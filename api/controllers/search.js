@@ -8,6 +8,20 @@ const options = {
 
 const bookDetails = [];
 
+const getCover = (cover) => {
+    return `https://covers.openlibrary.org/b/id/${cover}-M.jpg`;
+};
+
+const getIsbn = (isbn) => {
+    const isbn10 = [];
+    let i = 0;
+    while (i < 10) {
+        isbn10.push(`https://openlibrary.org/isbn/${isbn[i]}.json`);
+        i++;
+    };
+    return isbn10;
+};
+
 const getDescriptionGenetetor = (title, author, publishYear, subject) => {
     const description = `the book ${title} is a work of ${author} published in ${publishYear}.`;
     return description;
@@ -35,9 +49,9 @@ const getBookOpen = async (urlOpen) => {
     for (let i of info) {
         let bookDetail = {
             author: i.author_name[0],
-            cover: i.cover_i,
+            cover: getCover(i.cover_i),
             publishYear: i.first_publish_year,
-            isbn: i.isbn[0],
+            isbn: getIsbn(i.isbn),
             language: i.language,
             title: i.title,
             pages: i.number_of_pages_median,
