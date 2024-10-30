@@ -9,7 +9,6 @@ const options = {
 const bookDetails = [];
 
 const getDescriptionGenetetor = (title, author, publishYear, subject) => {
-    console.log(author, publishYear);
     const description = `the book ${title} is a work of ${author} published in ${publishYear}.`;
     return description;
 };
