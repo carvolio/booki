@@ -4,6 +4,8 @@ require('dotenv').config();
 const ejs = require('ejs');
 const search = require('./controllers/search');
 const translate = require('./controllers/transtale');
+const edition = require('./controllers/edition');
+const recommen = require('./controllers/recommen');
 
 const app = express();
 app.use(express.json());
@@ -22,10 +24,9 @@ app.listen(porta, () => {
 
 const getHomeBook = async (req, res) => {
     const nameBook = "dune";
-    const result = await search.search('q', nameBook, '', '', '', 2);
-    console.log(result[1]);
-    const lang = 1;
-
+    const result = await search.search('subject', 'New York Times reviewed', '', '', '', 1);
+    
+    const lang = 0;
     if (lang == 1) {
 
         for (let i in result) {
@@ -36,7 +37,18 @@ const getHomeBook = async (req, res) => {
                 result[i].subject[j] = await translate.translate(result[i].subject[j]);
             };
         };
-        console.log(result[1]);
+    };
+
+    for (let i in result) {
+        let resultEdition = await edition.edition(result[i].isbn);
+        result[i].edition = resultEdition;
+    };
+    
+    // console.log(result[i]);
+    for (let i in result) {
+        let resultRecommen = await recommen.recommen(result[i].title, result[i].subject, result[i].author);
+        result[i].recommen = resultRecommen;
+        console.log(result[i]);
     };
 }
 router.get("/", getHomeBook);

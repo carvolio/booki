@@ -6,8 +6,6 @@ const options = {
     headers: headers
 };
 
-const bookDetails = [];
-
 const getCover = (cover) => {
     return `https://covers.openlibrary.org/b/id/${cover}-M.jpg`;
 };
@@ -45,6 +43,7 @@ const getBookOpen = async (urlOpen) => {
     const response = await fetch(urlOpen, options);
     const data = await response.json();
     const info = data.docs;
+    const bookDetails = [];
 
     for (let i of info) {
         let bookDetail = {
