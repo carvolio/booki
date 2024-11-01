@@ -13,8 +13,8 @@ const getCover = (cover) => {
 const getIsbn = (isbn) => {
     const isbn10 = [];
     let i = 0;
-    while (i < 10) {
-        isbn10.push(`https://openlibrary.org/isbn/${isbn[i]}.json`);
+    while (i < 10 && isbn !== "unknown" ) {
+        isbn10.push(`https://openlibrary.org/isbn/${isbn[i]}.json` || "unknown");
         i++;
     };
     return isbn10;
@@ -46,19 +46,22 @@ const getBookOpen = async (urlOpen) => {
     const bookDetails = [];
 
     for (let i of info) {
+        let author = i.author_name || "unknown";
+        let publishYear = i.first_publish_year || "unknown";
+        let publisher = i.publisher[0] || "unknown";
         let bookDetail = {
-            author: i.author_name[0],
-            cover: getCover(i.cover_i),
-            publishYear: i.first_publish_year,
-            isbn: getIsbn(i.isbn),
-            language: i.language,
-            title: i.title,
-            pages: i.number_of_pages_median,
-            publisher: i.publisher[0],
-            subject: i.subject,
-            ratingCount: i.ratings_count,
-            ratingAverage: i.ratings_average,
-            description: await getDescriptionWiki(i.title, i.author_name[0], i.first_publish_year, i.subject)
+            author: author,
+            cover: getCover(i.cover_i) || "unknown",
+            publishYear: publishYear,
+            isbn: getIsbn(i.isbn) || "unknown",
+            language: i.language || "unknown",
+            title: i.title || "unknown",
+            pages: i.number_of_pages_median || "unknown",
+            publisher: publisher,
+            subject: i.subject || "unknown",
+            ratingCount: i.ratings_count || "unknown",
+            ratingAverage: i.ratings_average || "unknown",
+            description: await getDescriptionWiki(i.title, author, publishYear, i.subject)
           };
           bookDetails.push(bookDetail);
     };  

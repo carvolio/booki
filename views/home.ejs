@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+     <header>
+        <img src="../public/assets/book-open.jpg" alt="">
+        <div>
+            <button><img src="../public/assets/languages.svg" alt=""></button>
+            <button><img src="../public/assets/coffee.svg" alt=""></button>
+        </div>
+     </header>
+     <main>
+        <div>
+            <img src="../public/assets/book-open.svg" alt="">
+            <h3>booki</h3>
+        </div>
+        <div>
+            <span>book</span>
+            <span>game of thones</span>
+            <button>pesquisa</button>
+        </div>
+        <div>
+            <span>vitrine</span>
+            <img src=<%= books[0].cover %> alt="">
+            <span><%= books[0].title %></span>
+            <span><%= books[0].description %></span>
+        </div>
+     </main>
+     <footer>
+        <div>
+            <span>contact</span>
+            <span>icone github</span>
+        </div>
+        <div>
+            <span>donation</span>
+            <span>icone buymeacoffe</span>
+            <span>icone kofi</span>
+            <span>icone paypal</span>
+        </div>
+        <span>Copyright © 2024 Carvolio</span>
+     </footer>
+</body>
+</html>
+<style>
+    img {
+        width: 0.3em;
+        height: 0.3em;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+</style>

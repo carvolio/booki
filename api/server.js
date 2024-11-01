@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(cors());
 
 const porta = process.env.PORT || 3000;
-//app.set('view engine', 'ejs');
-//app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 const router = express.Router();
 app.use(router);
@@ -23,8 +23,9 @@ app.listen(porta, () => {
 });
 
 const getHomeBook = async (req, res) => {
-    const nameBook = "dune";
-    const result = await search.search('subject', 'New York Times reviewed', '', '', '', 1);
+    const subjectsArry = ["fiction", "fantasy", "young adult", "thriller", "sience fiction", "romance", "horror"];
+    const subjects = subjectsArry[Math.floor(Math.random() * subjectsArry.length)];
+    const result = await search.search('subject', subjects, '', '', '', 3);
     
     const lang = 0;
     if (lang == 1) {
@@ -44,11 +45,17 @@ const getHomeBook = async (req, res) => {
         result[i].edition = resultEdition;
     };
     
-    // console.log(result[i]);
     for (let i in result) {
         let resultRecommen = await recommen.recommen(result[i].title, result[i].subject, result[i].author);
         result[i].recommen = resultRecommen;
-        console.log(result[i]);
     };
+
+    return result;
 }
-router.get("/", getHomeBook);
+
+const getHome = async (req, res) => {
+    const books = await getHomeBook();
+    console.log(books[0].title, books[1].title, books[2].title)
+    res.render('home', { books: books });
+};
+router.get("/", getHome);
