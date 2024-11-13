@@ -3,52 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
     <title>Home</title>
 </head>
 <body>
      <header>
-        <img src="../public/assets/book-open.jpg" alt="">
+        <img src="/assets/book-open.svg" alt="">
         <div>
-            <button><img src="../public/assets/languages.svg" alt=""></button>
-            <button><img src="../public/assets/coffee.svg" alt=""></button>
+            <button><img src="/assets/languages.svg" alt=""></button>
+            <button><img src="/assets/coffee.svg" alt=""></button>
         </div>
      </header>
      <main>
-        <div>
-            <img src="../public/assets/book-open.svg" alt="">
+        <div id="booki">
+            <img src="/assets/book-open.svg" alt="">
             <h3>booki</h3>
         </div>
-        <div>
-            <span>book</span>
-            <span>game of thones</span>
-            <button>pesquisa</button>
+        <div id="searchHome">   
+            <select name="opcao" id="searchOption">
+                <option value="optionBook">Book</option>
+                <option value="optionAuthor">Author</option>    
+                <option value="optionSubject">Subject</option>
+              </select>
+            <input type="text" id="inputText" name="inputText" placeholder="Search books" required>
+            <button><img src="/assets/search.svg" alt=""></button>
         </div>
-        <div>
-            <span>vitrine</span>
-            <img src=<%= books[0].cover %> alt="">
-            <span><%= books[0].title %></span>
-            <span><%= books[0].description %></span>
+        <div id="showcase">
+            <% for(var i = 0; i < books.length; i++) { %>
+                <% if(i <= 2 && i % 2 == 0){ %>
+                    <div class="showcaseBook showcaseBook1to3" >
+                        <img src=<%= books[i].cover %> alt="">
+                        <div class="showcaseBookText">
+                            <h1 class="showcaseBookTitle"><%= books[i].title %><br></h1>
+                            <span><%= books[i].description %></span>
+                        </div>
+                    </div>
+                  <% } else if (i <= 2 && i % 2 != 0) { %>  
+                    <div class="showcaseBook showcaseBook1to3" >
+                        <div class="showcaseBookText">
+                            <h1 class="showcaseBookTitle"><%= books[i].title %><br></h1>
+                            <span><%= books[i].description %></span>
+                        </div>
+                        <img src=<%= books[i].cover %> alt="">
+                    </div>
+                    
+                <% } else if (i >= 3 && i % 2 == 0) { %> 
+                    <div class="showcaseBook showcaseBook4to9">
+                        <img src=<%= books[i].cover %> alt="">
+                        <div class="showcaseBookText">
+                            <h1 class="showcaseBookTitle"><%= books[i].title %><br></h1>
+                            <span><%= books[i].description %></span>
+                        </div>
+                    </div>
+                <% } else if (i >= 3 && i % 2 != 0) { %> 
+                    <div class="showcaseBook showcaseBook4to9">
+                        <div class="showcaseBookText">
+                            <h1 class="showcaseBookTitle"><%= books[i].title %><br></h1>
+                            <span><%= books[i].description %></span>
+                        </div>
+                        <img src=<%= books[i].cover %> alt="">
+                    </div>
+                <% } %>               
+            <% } %>
         </div>
      </main>
      <footer>
         <div>
-            <span>contact</span>
-            <span>icone github</span>
-        </div>
-        <div>
-            <span>donation</span>
-            <span>icone buymeacoffe</span>
-            <span>icone kofi</span>
-            <span>icone paypal</span>
+            <div id="contact">
+                <span>contact</span>
+                <img src="/assets/github.svg" alt="">
+            </div>
+            <div id="donation">
+                <span>donation</span>
+                <img src="/assets/bmclogo.png" alt="">
+                <img src="/assets/kofi.png" alt="">
+                <img src="/assets/paypal.png" alt="">
+            </div>
         </div>
         <span>Copyright © 2024 Carvolio</span>
      </footer>
 </body>
+<script src="/scripts/home.js"></script>
 </html>
-<style>
-    img {
-        width: 0.3em;
-        height: 0.3em;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-    }
-</style>

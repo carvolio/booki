@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 100; }
+
+button img {
+  width: 1.7em;
+  height: 1.7em; }
+
+header {
+  background-color: #82C0CC;
+  width: 100%;
+  height: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  header img {
+    width: 3.1em;
+    height: 3.1em;
+    margin-left: 1em;
+    margin-right: 1em; }
+
+button {
+  background-color: #82C0CC;
+  border: none; }
+
+main {
+  background-color: #EDE7E3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+#booki {
+  display: flex;
+  font-size: 4.9em;
+  align-items: center;
+  margin: 1.2em 0em 1.2em 0em;
+  font-weight: 400;
+  font-style: italic; }
+  #booki img {
+    width: 1.8em;
+    height: 1.8em;
+    margin-right: 0.3em;
+    stroke-width: 2px; }
+
+#searchHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 7em;
+  background-color: #82C0CC;
+  font-size: 0.9em;
+  padding: 0.4em 2em 0.4em 2em;
+  border-radius: 1.3em;
+  width: 30em; }
+  #searchHome select {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.7em;
+    margin: 0; }
+  #searchHome input {
+    background-color: #EDE7E3;
+    border: 0;
+    padding: 0.5em;
+    border-radius: 1em;
+    outline: none;
+    font-size: 1.5em;
+    margin: 1em;
+    width: 14em; }
+
+#showcase {
+  margin-bottom: 4em; }
+
+.showcaseBook {
+  display: flex;
+  justify-content: center;
+  width: 30em;
+  margin-top: 3em;
+  margin-bottom: 3em; }
+  .showcaseBook .showcaseBookText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
+  .showcaseBook img {
+    border-radius: 0em 1em 1em 0em;
+    width: 12em;
+    height: 20em; }
+  .showcaseBook h1 {
+    margin-left: 0.5em; }
+  .showcaseBook span {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em; }
+
+footer {
+  background-color: #16697A;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5em; }
+  footer #contact {
+    display: flex;
+    align-items: center;
+    margin: 2em 0em 1em 0em; }
+    footer #contact span {
+      width: 5em; }
+  footer #donation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2em; }
+    footer #donation span {
+      width: 5em; }
+
+#donation img {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.9em;
+  border-radius: 100%; }
+
+#contact img {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.9em;
+  border-radius: 100%; }
+
+.showcaseBook4to9 {
+  display: none; }
+
+/*# sourceMappingURL=style.css.map */

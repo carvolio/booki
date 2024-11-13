@@ -47,23 +47,32 @@ const getBookOpen = async (urlOpen) => {
 
     for (let i of info) {
         let author = i.author_name || "unknown";
+        let cover = getCover(i.cover_i) || "unknown";
         let publishYear = i.first_publish_year || "unknown";
+        let isbn = getIsbn(i.isbn) || "unknown"
+        let language = i.language || "unknown";
+        let title = i.title || "unknown";
+        let pages = i.number_of_pages_median || "unknown";
         let publisher = i.publisher[0] || "unknown";
+        let subject = i.subject || "unknown";
+        let ratingCount = i.ratings_count || "unknown";
+        let ratingAverage = i.ratings_average || "unknown";
+
         let bookDetail = {
             author: author,
-            cover: getCover(i.cover_i) || "unknown",
+            cover: cover,
             publishYear: publishYear,
-            isbn: getIsbn(i.isbn) || "unknown",
-            language: i.language || "unknown",
-            title: i.title || "unknown",
-            pages: i.number_of_pages_median || "unknown",
+            isbn: isbn,
+            language: language,
+            title: title,
+            pages: pages,
             publisher: publisher,
-            subject: i.subject || "unknown",
-            ratingCount: i.ratings_count || "unknown",
-            ratingAverage: i.ratings_average || "unknown",
-            description: await getDescriptionWiki(i.title, author, publishYear, i.subject)
-          };
-          bookDetails.push(bookDetail);
+            subject: subject,
+            ratingCount: ratingCount,
+            ratingAverage: ratingAverage,
+            description: await getDescriptionWiki(title, author, publishYear, subject)
+        };
+        bookDetails.push(bookDetail);
     };  
     return bookDetails;
 };

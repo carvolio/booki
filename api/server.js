@@ -25,7 +25,7 @@ app.listen(porta, () => {
 const getHomeBook = async (req, res) => {
     const subjectsArry = ["fiction", "fantasy", "young adult", "thriller", "sience fiction", "romance", "horror"];
     const subjects = subjectsArry[Math.floor(Math.random() * subjectsArry.length)];
-    const result = await search.search('subject', subjects, '', '', '', 3);
+    const result = await search.search('subject', subjects, '', '', '', 9);
     
     const lang = 0;
     if (lang == 1) {
@@ -41,21 +41,28 @@ const getHomeBook = async (req, res) => {
     };
 
     for (let i in result) {
-        let resultEdition = await edition.edition(result[i].isbn);
-        result[i].edition = resultEdition;
+        let dots = result[i].description.split('.');
+        result[i].description = dots.slice(0, 2).join('.');
+        const caracter = result[i].description.length > 195 ? result[i].description.slice(0, 195) + '...' : result[i].description;  
+        result[i].description = caracter;
+
     };
+
+    // for (let i in result) {
+    //     let resultEdition = await edition.edition(result[i].isbn);
+    //     result[i].edition = resultEdition;
+    // };
     
-    for (let i in result) {
-        let resultRecommen = await recommen.recommen(result[i].title, result[i].subject, result[i].author);
-        result[i].recommen = resultRecommen;
-    };
+    // for (let i in result) {
+    //     let resultRecommen = await recommen.recommen(result[i].title, result[i].subject, result[i].author);
+    //     result[i].recommen = resultRecommen;
+    // };
 
     return result;
 }
 
 const getHome = async (req, res) => {
     const books = await getHomeBook();
-    console.log(books[0].title, books[1].title, books[2].title)
     res.render('home', { books: books });
 };
 router.get("/", getHome);
